@@ -193,7 +193,7 @@
     <div class="container">
         <div class="row">
             <a href="/beta" class="logo pull-left">
-                <h1>STEAMCAT</h1>
+               <img src="images/logo.png" width="240" height="35" alt="">
             </a>
             <div class="utpWrap pull-left">
                 <div class="utp clearfix pull-left">
@@ -297,14 +297,14 @@
                 <div class="mainContent pull-right">
                     <div class="registrationWrap">
                         <h1>Регистрация</h1>
-                        <form action="" class="form">
+                        <form action="" class="form register-form">
                             <input type="text" name="" id="" placeholder="Имя">
                             <input type="text" name="" id="" placeholder="Фамилия">
-                            <input type="text" name="" id="" placeholder="Логин *">
-                            <input type="text" name="" id="" placeholder="E-mail *">
-                            <input type="password" name="" id="" placeholder="Пароль *">
-                            <input type="password" name="" id="" placeholder="Повтор пароля *">
-                            <input type="text" name="" id="" placeholder="Введите цифры с картинки *">
+                            <input type="text" name="" id="" placeholder="Логин">
+                            <input type="text" name="" id="" placeholder="E-mail">
+                            <input type="password" name="" id="" placeholder="Пароль">
+                            <input type="password" name="" id="" placeholder="Повтор пароля">
+                            <input type="text" name="" id="" placeholder="Введите цифры с картинки">
                             <label>Обязательные поля <sup>*</sup></label>
                             <input class="captcha pull-left" value="sadasd">
                             <a href="" class="register pull-right">Зарегистрироваться</a>
@@ -387,5 +387,16 @@
         </div>
     </div>
 </footer>
+<script>
+    $(document).ready(function () {
+        $('input,textarea').focus(function(){
+          $(this).data('placeholder',$(this).attr('placeholder'))
+          $(this).attr('placeholder','');
+        });
+        $('input,textarea').blur(function(){
+          $(this).attr('placeholder',$(this).data('placeholder'));
+        });
+    });
+</script>
 </body>
 </html>

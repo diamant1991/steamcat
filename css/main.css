@@ -5,6 +5,15 @@
 	font-weight: normal;
 	src: local('MizuFontAlphabet'), url('../fonts/mizufalp.woff') format('woff');
 }
+@font-face {
+    font-family: 'impact';
+    src: url('../fonts/impact.eot');
+    src: url('../fonts/impact.eot') format('embedded-opentype'),
+         url('../fonts/impact.woff2') format('woff2'),
+         url('../fonts/impact.woff') format('woff'),
+         url('../fonts/impact.ttf') format('truetype'),
+         url('../fonts/impact.svg#impact') format('svg');
+}
 
 /* =============================================================================
 Custom jQuery UI Added
@@ -338,14 +347,13 @@ nav .avatar img {
 }
 .navContainer {
 	margin-top: 20px;
-	border:1px solid #c7c7c7;
 	width: 100%;
 }
 .topNav .nav li {
 	float: left;
 }
 .topNav .nav li a {
-	padding: 15px;
+	padding: 15px 14.5px;
 	color: #888888;
 }
 .topNav .nav li.active a {
@@ -356,18 +364,17 @@ nav .avatar img {
 	color: #5e5e5e;
 }
 .someButtons {
-	width: 346px;
+	width: 332px;
 }
 .someButtons a {
 	float: left;
 	display: block;
-	width: 173px;
+	width: 165px;
 	line-height: 50px;
 	text-align: center;
 	color: #fff;
-	font-weight: 700;
-	font-size: 18px;
-	font-family: Arial black;
+	font-size: 24px;
+	font-family: 'impact';
 }
 .subscribeBtn {
 	background: #59ff7c;
@@ -595,7 +602,7 @@ nav .avatar img {
 	color: #fff;
 	line-height: 40px;
 	padding-left: 15px;
-	font-weight: 900;
+	font-family: 'impact';
 	font-size: 18px;
 }
 .bestImg {
@@ -648,7 +655,7 @@ nav .avatar img {
 	margin-top: 20px;
 }
 .bestPrice s {
-	color: #ffbb78;
+	color: #ccc;
 }
 .bestPrice b {
 	color: #ff5a00;
@@ -708,6 +715,8 @@ nav .avatar img {
 	padding: 7px 15px;
 	color: #888;
 	font-size: 16px;
+	font-family: 'Open Sans',sans-serif;
+	font-weight: 300;
 }
 .categories .nav>li>a:hover {
 	color: #5e5e5e;
@@ -1249,6 +1258,9 @@ nav .avatar img {
 	display: block;
 	height: 100px;
 	text-align: center;
+	-webkit-transition: 0s !important;
+	-o-transition: 0s !important;
+	transition: 0s !important;
 }
 .filterElement a img {
 	display: inline;
@@ -1323,11 +1335,11 @@ label:hover .icheckbox {
 .sortBy span,
 .showBy span {
 	line-height: 40px;
-	padding: 0 20px;
+	padding: 0 33px;
 	color: #f60;
 }
 .select {
-	padding: 0 20px;
+	padding: 0 17px;
 	border-left:1px solid #c7c7c7;
 	border-right:1px solid #c7c7c7;
 	height: 38px;
@@ -1357,6 +1369,7 @@ label:hover .icheckbox {
 	height: 40px;
 	line-height: 40px;
 	padding: 0 15px;
+	outline: 0;
 }
 .registrationWrap .form input:first-child {
 	border-top:1px solid #c7c7c7;
@@ -1440,9 +1453,10 @@ label:hover .icheckbox {
 	max-width: 360px;
 	max-height: 60px;
 	resize:none;
-	border-bottom: 1px solid  #c7c7c7;
+	border: 1px solid  #c7c7c7;
 	border-top: 0;
 	padding: 15px;
+	outline: 0;
 }
 .payInfo {
 	color: #6b6b6b;
@@ -1766,23 +1780,23 @@ footer .about {
 	margin-bottom: 20px;
 }
 footer h3 {
-	font-size: 16px;
+	font-size: 15px;
 	text-transform: uppercase;
 	color: #818181;
-	font-weight: 600;
+	font-weight: 400;
 }
 footer .pull-left h3 {
 	margin-top: 3px;
 }
 footer .about p {
-	font-size: 14px;
+	font-size: 13px;
 	color: #818181;
-	font-weight: 600;
+	font-weight: 400;
 }
 footer .contacts {
 	color: #818181;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 400;
 }
 footer .contacts span {
 	color: #ff5353;
@@ -1842,7 +1856,7 @@ footer .pull-right input {
 	-o-transition: 0.2s;
 	transition: 0.2s;
 	font-family: 'Open Sans';
-	font-weight: 600;
+	font-weight: 400;
 }
 footer .pull-right input:focus {
 	border-color: #ff5353;
@@ -1852,7 +1866,7 @@ footer .pull-right button {
 	line-height: 30px;
 	vertical-align: middle;
 	text-transform: uppercase;
-	font-weight: 600;
+	font-weight: 400;
 	color: #fff;
 	border-radius:0;
 	border:none;
@@ -1878,7 +1892,159 @@ footer .cats h3 {
 footer .cats .nav a {
 	padding: 5px 15px;
 	color: #aaa;
+	font-size: 13px;
 }
+	footer .cats .nav li{
+		line-height: 18px;
+	}
 footer .cats .nav a:hover {
 	color: #5e5e5e;
+}
+.nav.pull-left,.someButtons.pull-right{
+	border:1px solid #c7c7c7;
+}
+.someButtons.pull-right{
+	font-family: 'impact';
+}
+.itemWrap .bestItem img{
+	display: block;
+	width: 100%;
+	height: 160px;
+}
+	.itemWrap .bestItem .bestSaleLabel{
+		width: 80px;
+  		right: -16px;
+    	top: 17px;
+    	height: 30px;
+    	line-height: 30px;
+	}
+.itemWrap .bestItem{
+	padding: 0;
+}
+.itemWrap .bestName a{
+	font-size: 15px;
+}
+.itemWrap .bestPrice s, .itemWrap .bestPrice b{
+	width: 85px;
+    font-size: 25px;
+    margin-top: 8px;
+}
+.itemWrap .bestRate{
+	margin-top: 10px;
+}
+.itemWrap .bestImg{
+	margin-bottom: 15px;
+}
+.logo.pull-left{
+	position: relative;
+	top: 5px;
+}
+.steam-icon{
+	width: 149px;
+	height: 87px;
+	background: url(../images/steamicongray.png)no-repeat;
+	background-size: cover;
+	background-position: 50%;
+}
+	.steam-icon:hover{
+		background: url(../images/steamlogo4.jpg)no-repeat;
+		background-size: cover;
+	    background-position: 50%;
+	}
+.origin-icon{
+	width: 148px;
+	height: 50px !important;
+	background: url(../images/originicongray.png)no-repeat;
+	background-size: cover;
+	background-position: 50%;
+	position: relative;
+	top: 20px;
+}
+	.origin-icon:hover{
+		background: url(../images/origin.png)no-repeat;
+	    background-size: cover;
+	     background-position: 50%; 
+	}
+.autoplay-icon{
+  	width: 148px;
+  	height: 66px !important;
+	background: url(../images/uplaygray.png)no-repeat;
+	background-size: cover;
+	background-position: 50%;
+	position: relative;
+	top: 15px;
+}
+	.autoplay-icon:hover{
+		background: url(../images/UPLAY_logo_-_Small.png)no-repeat;
+	    background-size: cover;
+	    background-position: 50%; 
+	}
+.battlenet-icon{
+	width: 146px;
+	height: 25px !important;
+	background: url(../images/bnetlogogray.png)no-repeat;
+	background-size: cover;
+	background-position: 50%;
+	position: relative;
+	top: 39px;
+}
+	.battlenet-icon:hover{
+		width: 146px;
+		background: url(../images/BattleNet.png)no-repeat;
+		background-size: cover;
+		background-position: 50%;
+	}
+.filterElement .col-md-6{
+	height: 100px;
+}
+.registrationWrap .form.register-form input:nth-child(3){
+	background: url(../images/place.png)no-repeat 17% 14px;
+}
+.registrationWrap .form.register-form input:nth-child(4){
+	background: url(../images/place.png)no-repeat 17% 14px;
+}
+.registrationWrap .form.register-form input:nth-child(5){
+	background: url(../images/place.png)no-repeat 19% 14px;
+}	
+.registrationWrap .form.register-form input:nth-child(6){
+	background: url(../images/place.png)no-repeat 34% 14px;
+}
+.registrationWrap .form.register-form input:nth-child(7){
+	background: url(../images/place.png)no-repeat 57% 14px;
+}				
+	.registrationWrap .form.register-form input:focus{
+		background-image: none !important;
+	}
+.registrationWrap .form.ordertoForm{
+	width: 600px;
+}
+.registrationWrap .form.ordertoForm input{
+	display: inline;
+	border-bottom: 0;
+}
+	.registrationWrap .form.ordertoForm td{
+		padding-right: 100px;
+	}
+.registrationWrap .form.ordertoForm textarea{
+	border-top: 1px solid #c7c7c7;
+}
+#owl-demo .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.tBody + .register{
+	margin-top: 15px;
+}
+.timer-block{
+	padding: 0 !important
+}
+.knob{
+	color: #ff4848 !important;
+	height: 15px !important;
+	margin-top: 10px !important;
+	font-size: 16px !important;
+}
+.ccounter >div{
+	margin-right: 0 !important
 }

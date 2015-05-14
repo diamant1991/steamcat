@@ -19,6 +19,7 @@
     <script src="js/numericinput.js"></script>
     <script src="js/icheck.js"></script>
 
+
     <script>
         $(document).ready(function(){
             $('.marquee p').marquee();
@@ -194,7 +195,7 @@
     <div class="container">
         <div class="row">
             <a href="/beta" class="logo pull-left">
-                <h1>STEAMCAT</h1>
+                <img src="images/logo.png" width="240" height="35" alt="">
             </a>
             <div class="utpWrap pull-left">
                 <div class="utp clearfix pull-left">
@@ -516,8 +517,11 @@
                                     <div class="col-md-6">
                                         Горячие скидки
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="timer"></div>
+                                    <div class="col-md-6 timer-block">
+                                        <div class="timer">
+                                            <div id="sample_countdown">00:10:00</div>
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1017,5 +1021,44 @@
         </div>
     </div>
 </footer>
+<script>
+    function simple_timer(sec, block, direction) {
+    var time    = sec;
+    direction   = direction || false;
+             
+    var hour    = parseInt(time / 3600);
+    if ( hour < 1 ) hour = 0;
+    time = parseInt(time - hour * 3600);
+    if ( hour < 10 ) hour = '0'+hour;
+ 
+    var minutes = parseInt(time / 60);
+    if ( minutes < 1 ) minutes = 0;
+    time = parseInt(time - minutes * 60);
+    if ( minutes < 10 ) minutes = '0'+minutes;
+ 
+    var seconds = time;
+    if ( seconds < 10 ) seconds = '0'+seconds;
+ 
+    block.innerHTML = hour+':'+minutes+':'+seconds;
+ 
+    if ( direction ) {
+        sec++;
+ 
+        setTimeout(function(){ simple_timer(sec, block, direction); }, 1000);
+    } else {
+        sec--;
+ 
+        if ( sec > 0 ) {
+            setTimeout(function(){ simple_timer(sec, block, direction); }, 1000);
+        } else {
+            alert('Время вышло!');
+        }
+    }
+}
+
+    var block = document.getElementById('sample_countdown');
+    simple_timer(300, block);
+
+</script>
 </body>
 </html>
