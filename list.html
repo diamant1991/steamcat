@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список товаров</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="js/owl/owl.carousel.css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.marquee.min.js"></script>
+    <script src="js/owl/owl.carousel.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/numericinput.js"></script>
+    <script src="js/icheck.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.marquee p').marquee();
+
+            var time = 4;
+
+            var owl = $('.mainSlider:visible');
+            var $progressBar,
+                $bar,
+                $elem,
+                tick,
+                percentTime;
+
+            owl.owlCarousel({
+                navText: ['',''],
+                dots: false,
+                nav: true,
+                items: 1,
+                pullDrag: false,
+                loop: true,
+                onInitialized: progressBar,
+                onTranslated: moved,
+            });
+
+            function progressBar(){
+                buildProgressBar();
+                start();
+            }
+
+            function buildProgressBar(){
+                $progressBar = $("<div>",{
+                    class:"progressBar"
+                });
+                $bar = $("<div>",{
+                    class:"bar"
+                });
+                $progressBar.append($bar).prependTo(owl);
+            }
+
+            function start() {
+                percentTime = 0;
+                isPause = false;
+                tick = setInterval(interval, 10);
+
+            };
+
+            function interval() {
+                if(isPause === false){
+                    percentTime += 1 / time;
+
+                    $bar.css({
+                        width: percentTime+"%"
+                    });
+
+                    if(percentTime == 100){
+                        owl.trigger('next.owl.carousel');
+                    }
+                }
+
+            }
+            // moved callback
+            function moved(){
+                clearTimeout(tick);
+                start();
+            }
+
+            $('.bestSlider').owlCarousel({
+                nav: true,
+                navText: ['',''],
+                dots: false,
+                loop: true,
+                nav: true,
+                items: 4
+            });
+
+            $('.tabsSlider').owlCarousel({
+                nav: true,
+                navText: ['',''],
+                dots: false,
+                loop: true,
+                nav: true,
+                items: 4
+            });
+
+            var slider = $('.rangeSlider').slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [0, 500],
+                slide: function(event, ui){
+                    $('.amount1').val(ui.values[0]);
+                    $('.amount2').val(ui.values[1]);
+                    var element = $('.amount2');
+                }
+            });
+
+            $('.amount1').val(slider.slider('values', 0));
+            $('.amount2').val(slider.slider('values', 1));
+
+            $('.amount1').bind('keyup',function(){
+                var value1 = $('.amount1').val();
+                var value2 = $('.amount2').val();
+                if(parseInt(value1) > parseInt(value2)){
+                    value1 = value2;
+                    $('.amount1').val(value1);
+                }
+                slider.slider('values',0,value1);
+            });
+
+            $('.amount2').bind('keyup',function(){
+                var value1 = $('.amount1').val();
+                var value2 = $('.amount2').val();
+                if(parseInt(value1) > parseInt(value2)){
+                    value2 = value1;
+                    $('.amount2').val(value2);
+                }
+                slider.slider('values',1,value2);
+            });
+
+            $('.amount1, .amount2').numericInput();
+
+            $('.icheck').iCheck();
+
+        });
+    </script>
+</head>
+<body>
+<div class="body">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="icons pull-left">
+			<span class="dropdown">
+			<a class="glyphicon glyphicon-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href=""></a>
+			<div class="dropdown-menu">
+                <form class="form" name="system_auth_form6zOYVN" method="post" target="_top" action="/beta/?login=yes&amp;bitrix_include_areas=Y">
+                    <input type="hidden" name="backurl" value="/beta/?bitrix_include_areas=Y" />
+                    <input type="hidden" name="AUTH_FORM" value="Y" />
+                    <input type="hidden" name="TYPE" value="AUTH" />
+
+                    <input type="text" name="USER_LOGIN" value="">
+                    <input type="password" name="USER_PASSWORD">
+                    <input type="submit" name="Login" value="Войти" />
+                </form>
+            </div>
+		</span>
+                    <a href="" class="glyphicon glyphicon-globe"></a>
+                    <a href="" class="glyphicon glyphicon-ruble"></a>
+                </div>
+                <div class="marquee pull-left">
+
+
+
+                    <p id="bx_3218110189_317">
+                        Добро пожаловать на сайт STEAMCAT.RU!									</p>
+                </div>
+                <nav class="pull-right">
+                    <ul class="nav pull-left">
+                        <li><a href="http://steamcat.ru/beta/registration">Регистрация</a></li>
+                        <li><a href="">Новости</a></li>
+                        <li><a href="">Акции</a></li>
+                        <li><a href="">Подписка</a></li>
+                        <li><a href="">Контакты</a></li>
+                        <li><a href="">Как купить?</a></li>
+                        <li><a href="">Гарантии</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+<div class="secondHeader">
+    <div class="container">
+        <div class="row">
+            <a href="/beta" class="logo pull-left">
+                <h1>STEAMCAT</h1>
+            </a>
+            <div class="utpWrap pull-left">
+                <div class="utp clearfix pull-left">
+                    <div class="utpImg pull-left">
+                        <img src="images/car.png" alt="">
+                    </div>
+                    <div class="utpText pull-left">
+                        <div class="utpHead">БЫСТРАЯ ДОСТАВКА</div>
+                        <div class="utpDesc">Доставка товара в день обращения</div>
+                    </div>
+                </div>
+                <div class="utp clearfix pull-left">
+                    <div class="utpImg pull-left">
+                        <img src="images/phone.png" alt="">
+                    </div>
+                    <div class="utpText pull-left">
+                        <div class="utpHead">ЛОЯЛЬНАЯ  ПОДДЕРЖКА</div>
+                        <div class="utpDesc">Звоните в любой момент 8-800-400-00-00</div>
+                    </div>
+                </div>
+                <div class="utp clearfix pull-left">
+                    <div class="utpImg pull-left">
+                        <img src="images/gift.png" alt="">
+                    </div>
+                    <div class="utpText pull-left">
+                        <div class="utpHead">ПОДАРКИ И АКЦИИ</div>
+                        <div class="utpDesc">Распродажи, акции, подписка и многое другое</div>
+                    </div>
+                </div>
+            </div>
+            <div class="basket pull-right">
+                <div class="basketInner">
+                    Корзина [<b>0.00 руб</b>]
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="topNav">
+    <div class="container">
+        <div class="row">
+            <div class="navContainer clearfix">
+                <ul class="nav pull-left">
+                    <li class="active"><a href="">ГЛАВНАЯ</a></li>
+                    <li><a href="">ТОП ПРОДАЖИ</a></li>
+                    <li><a href="">НОВИНКИ</a></li>
+                    <li><a href="">ПРЕДЗАКАЗ</a></li>
+                    <li><a href="">СКИДКИ</a></li>
+                    <li><a href="">НОВОСТИ</a></li>
+                    <li><a href="">КОНКУРСЫ</a></li>
+                    <li><a href="">РАЗДАЧИ</a></li>
+                </ul>
+                <div class="someButtons pull-right">
+                    <a href="" class="subscribeBtn">ПОДПИСКА</a>
+                    <a href="" class="chest">СУНДУК ИГР</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ТУТ ЗАКАНЧиВАЕТСЯ ХЕДЕР -->
+
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="leftMenu pull-left">
+                    <div class="filterWrap">
+                        <div class="filterHeading">
+                            <span>Сортировка по фильтрам</span>
+                        </div>
+                        <div class="filterElement">
+                            <span class="filterElementHeading">Цена</span>
+                            <form class="form clearfix">
+                                <label class="pull-left"><input class="amount1" type="text"><span class="amountSpan">от</span></label>
+                                <label class="pull-right"><input class="amount2" type="text"><span class="amountSpan">до</span></label>
+                            </form>
+                            <div class="rangeSlider"></div>
+                        </div>
+                        <div class="filterElement">
+                            <span class="filterElementHeading">Категории и жанры</span>
+                            <form class="form">
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Карты оплат</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">MMORPG</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Бесплатные </span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Гонки</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Топ 10</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Стратегии</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Коллекционные</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Аркады</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Экшн | Шутеры</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Инди-игры</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">РПГ</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Детские</span>
+                                </label>
+                            </form>
+                        </div>
+                        <div class="filterElement">
+                            <span class="filterElementHeading">Специальные предложения</span>
+                            <form class="form">
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Акции</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Предзаказы</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Скидки </span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Рекомендуемые</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Новинки</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">Супер-предложения</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">до 50 рублей</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">от 50 до 150 рублей</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">от 150 до 300 рублей</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="icheck">
+                                    <span class="icheckSpan">от 300 и выше</span>
+                                </label>
+                            </form>
+                        </div>
+                        <div class="filterElement">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="">
+                                            <img class="img-responsive" src="http://cdn1-www.craveonline.com/assets/uploads/2014/12/steamlogo4.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="">
+                                            <img class="img-responsive" src="http://www.digiseller.ru/preview/477568/p1_50127172631070.PNG" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="">
+                                            <img class="img-responsive" src="http://img4.wikia.nocookie.net/__cb20110831013734/assassinscreed/images/f/f6/UPLAY_logo_-_Small.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="">
+                                            <img class="img-responsive" src="http://upload.wikimedia.org/wikipedia/en/3/34/BattleNet.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mainContent pull-right">
+                    <div class="sortLine">
+                        <div class="sortBy pull-left">
+                            <span class="pull-left">Сортировать по</span>
+                            <div class="select pull-left">
+                                <select>
+                                    <option value="">Популярности</option>
+                                    <option value="">Цене</option>
+                                    <option value="">Имени</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="showBy pull-left">
+                            <span class="pull-left">Показывать по</span>
+                            <div class="select pull-left">
+                                <select>
+                                    <option value="">10</option>
+                                    <option value="">20</option>
+                                    <option value="">30</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="pageNavigation pull-right">
+                            <a href="#" class="prevPage glyphicon glyphicon-chevron-left"></a><!--
+						 --><a href="#" class="numPage">1</a><!--
+						 --><a href="#" class="numPage">2</a><!--
+						 --><a href="#" class="numPage">3</a><!--
+						 --><a href="#" class="nextPage glyphicon glyphicon-chevron-right"></a>
+                        </div>
+                    </div>
+                    <!-- Взять вёрстку элементов с главной страницы, там где табы, и картинка с ведьмаком -->
+                    <div class="catalogSection clearfix">
+                        <div class="itemWrap">
+                            <div class="itemImage">
+
+                            </div>
+                            <div class="itemName"></div>
+                            <div class="itemPrice"></div>
+                        </div>
+                        <div class="itemWrap">
+                            <div class="itemImage">
+
+                            </div>
+                            <div class="itemName"></div>
+                            <div class="itemPrice"></div>
+                        </div>
+                        <div class="itemWrap">
+                            <div class="itemImage">
+
+                            </div>
+                            <div class="itemName"></div>
+                            <div class="itemPrice"></div>
+                        </div>
+                        <div class="itemWrap">
+                            <div class="itemImage">
+
+                            </div>
+                            <div class="itemName"></div>
+                            <div class="itemPrice"></div>
+                        </div>
+                        <div class="itemWrap">
+                            <div class="itemImage">
+
+                            </div>
+                            <div class="itemName"></div>
+                            <div class="itemPrice"></div>
+                        </div>
+                        <div class="itemWrap">
+                            <div class="itemImage">
+
+                            </div>
+                            <div class="itemName"></div>
+                            <div class="itemPrice"></div>
+                        </div>
+                        <div class="itemWrap">
+                            <div class="itemImage">
+
+                            </div>
+                            <div class="itemName"></div>
+                            <div class="itemPrice"></div>
+                        </div>
+                        <div class="itemWrap">
+                            <div class="itemImage">
+
+                            </div>
+                            <div class="itemName"></div>
+                            <div class="itemPrice"></div>
+                        </div>
+
+                    </div>
+                    <div class="sortLine">
+                        <div class="sortBy pull-left">
+                            <span class="pull-left">Сортировать по</span>
+                            <div class="select pull-left">
+                                <select>
+                                    <option value="">Популярности</option>
+                                    <option value="">Цене</option>
+                                    <option value="">Имени</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="showBy pull-left">
+                            <span class="pull-left">Показывать по</span>
+                            <div class="select pull-left">
+                                <select>
+                                    <option value="">10</option>
+                                    <option value="">20</option>
+                                    <option value="">30</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="pageNavigation pull-right">
+                            <a href="#" class="prevPage glyphicon glyphicon-chevron-left"></a><!--
+						 --><a href="#" class="numPage">1</a><!--
+						 --><a href="#" class="numPage">2</a><!--
+						 --><a href="#" class="numPage">3</a><!--
+						 --><a href="#" class="nextPage glyphicon glyphicon-chevron-right"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- ТУТ НАЧИИНАЕТ ФУТЕ -->
+
+<footer>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="pull-left">
+                <div class="about">
+                    <h3>О нашем магазине</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non cupiditate nemo ut eius! Cupiditate, tempora, quasi? Ducimus iusto placeat nemo, mollitia repellat! Eligendi veritatis, incidunt. Nisi voluptatum at incidunt quas?</p>
+                </div>
+                <div class="contacts">
+                    <div class="someContact"><span>Тел.: </span>8-800-965-00-00</div>
+                    <div class="someContact"><span>E mail: </span>steamcat@domain.ru</div>
+                    <div class="someContact"><span>Адрес: </span> г. Москва ул. Отрадный проезд 6</div>
+                </div>
+                <div class="subscribe">
+                    <h3>Подписывайтесь на нас</h3>
+                    <a class="fa fa-facebook" href=""></a>
+                    <a class="fa fa-vk" href=""></a>
+                    <a class="fa fa-twitter" href=""></a>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="heading">
+                    <span>Подписывайтесь на свежие новости</span>
+                    <input type="text" placeholder="Введите свой E-mail"><button>Подписаться</button>
+                </div>
+                <div class="cats">
+                    <h3>Категории</h3>
+                    <ul class="nav">
+                        <li><a href="">Категория 1</a></li>
+                        <li><a href="">Категория 2</a></li>
+                        <li><a href="">Категория 3</a></li>
+                        <li><a href="">Категория 4</a></li>
+                        <li><a href="">Категория 5</a></li>
+                        <li><a href="">Категория 6</a></li>
+                        <li><a href="">Категория 7</a></li>
+                        <li><a href="">Категория 8</a></li>
+                    </ul>
+                </div>
+                <div class="cats">
+                    <h3>Категории</h3>
+                    <ul class="nav">
+                        <li><a href="">Категория 1</a></li>
+                        <li><a href="">Категория 2</a></li>
+                        <li><a href="">Категория 3</a></li>
+                        <li><a href="">Категория 4</a></li>
+                        <li><a href="">Категория 5</a></li>
+                        <li><a href="">Категория 6</a></li>
+                        <li><a href="">Категория 7</a></li>
+                        <li><a href="">Категория 8</a></li>
+                    </ul>
+                </div>
+                <div class="cats">
+                    <h3>Категории</h3>
+                    <ul class="nav">
+                        <li><a href="">Категория 1</a></li>
+                        <li><a href="">Категория 2</a></li>
+                        <li><a href="">Категория 3</a></li>
+                        <li><a href="">Категория 4</a></li>
+                        <li><a href="">Категория 5</a></li>
+                        <li><a href="">Категория 6</a></li>
+                        <li><a href="">Категория 7</a></li>
+                        <li><a href="">Категория 8</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

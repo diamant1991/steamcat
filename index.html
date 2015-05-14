@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="js/owl/owl.carousel.css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.marquee.min.js"></script>
+    <script src="js/owl/owl.carousel.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/numericinput.js"></script>
+    <script src="js/icheck.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.marquee p').marquee();
+
+            var time = 4;
+
+            var owl = $('.mainSlider:visible');
+            var $progressBar,
+                $bar,
+                $elem,
+                tick,
+                percentTime;
+
+            owl.owlCarousel({
+                navText: ['',''],
+                dots: false,
+                nav: true,
+                items: 1,
+                pullDrag: false,
+                loop: true,
+                onInitialized: progressBar,
+                onTranslated: moved,
+            });
+
+            function progressBar(){
+                buildProgressBar();
+                start();
+            }
+
+            function buildProgressBar(){
+                $progressBar = $("<div>",{
+                    class:"progressBar"
+                });
+                $bar = $("<div>",{
+                    class:"bar"
+                });
+                $progressBar.append($bar).prependTo(owl);
+            }
+
+            function start() {
+                percentTime = 0;
+                isPause = false;
+                tick = setInterval(interval, 10);
+
+            };
+
+            function interval() {
+                if(isPause === false){
+                    percentTime += 1 / time;
+
+                    $bar.css({
+                        width: percentTime+"%"
+                    });
+
+                    if(percentTime == 100){
+                        owl.trigger('next.owl.carousel');
+                    }
+                }
+
+            }
+            // moved callback
+            function moved(){
+                clearTimeout(tick);
+                start();
+            }
+
+            $('.bestSlider').owlCarousel({
+                nav: true,
+                navText: ['',''],
+                dots: false,
+                loop: true,
+                nav: true,
+                items: 4
+            });
+
+            $('.tabsSlider').owlCarousel({
+                nav: true,
+                navText: ['',''],
+                dots: false,
+                loop: true,
+                nav: true,
+                items: 4
+            });
+
+            var slider = $('.rangeSlider').slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [0, 500],
+                slide: function(event, ui){
+                    $('.amount1').val(ui.values[0]);
+                    $('.amount2').val(ui.values[1]);
+                    var element = $('.amount2');
+                }
+            });
+
+            $('.amount1').val(slider.slider('values', 0));
+            $('.amount2').val(slider.slider('values', 1));
+
+            $('.amount1').bind('keyup',function(){
+                var value1 = $('.amount1').val();
+                var value2 = $('.amount2').val();
+                if(parseInt(value1) > parseInt(value2)){
+                    value1 = value2;
+                    $('.amount1').val(value1);
+                }
+                slider.slider('values',0,value1);
+            });
+
+            $('.amount2').bind('keyup',function(){
+                var value1 = $('.amount1').val();
+                var value2 = $('.amount2').val();
+                if(parseInt(value1) > parseInt(value2)){
+                    value2 = value1;
+                    $('.amount2').val(value2);
+                }
+                slider.slider('values',1,value2);
+            });
+
+            $('.amount1, .amount2').numericInput();
+
+            $('.icheck').iCheck();
+
+        });
+    </script>
+</head>
+<body>
+<div class="body">
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="icons pull-left">
+
+                    <a class="userLink" href="">
+			<span class="avatar">
+									<img src="images/people.png" border="0" alt="" width="100" height="100" />			</span>
+                        <span class="name">s26</span>
+                    </a>
+                    <a href="" class="logOut glyphicon glyphicon-remove" onclick="$('#logoutForm').submit(); return false;"></a>
+
+                    <form style="display: none;" action="/beta/order/?back_url_admin=%2Fbitrix%2Fadmin%2Ffileman_file_edit.php%3Fpath%3D%252Fbeta%252Fregistration%252Findex.php%26full_src%3DY%26site%3Ds1%26lang%3Dru%26filter%3DY%26set_filter%3DY" id="logoutForm">
+                        <input type="hidden" name="back_url_admin" value="/bitrix/admin/fileman_file_edit.php?path=%2Fbeta%2Fregistration%2Findex.php&amp;full_src=Y&amp;site=s1&amp;lang=ru&amp;filter=Y&amp;set_filter=Y" />
+                        <input type="hidden" name="logout" value="yes" />
+                        <input type="hidden" name="logout_butt" value="Р’С‹Р№С‚Рё" />
+                    </form>
+                    <a href="" class="glyphicon glyphicon-globe"></a>
+                    <a href="" class="glyphicon glyphicon-ruble"></a>
+                </div>
+                <div class="marquee pull-left">
+
+
+
+                    <p id="bx_3218110189_317">
+                        Добро пожаловать на сайт STEAMCAT.RU!									</p>
+                </div>
+                <nav class="pull-right">
+                    <ul class="nav pull-left">
+                        <li><a href="">Новости</a></li>
+                        <li><a href="">Акции</a></li>
+                        <li><a href="">Подписка</a></li>
+                        <li><a href="">Контакты</a></li>
+                        <li><a href="">Как купить?</a></li>
+                        <li><a href="">Гарантии</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+
+<div class="secondHeader">
+    <div class="container">
+        <div class="row">
+            <a href="/beta" class="logo pull-left">
+                <h1>STEAMCAT</h1>
+            </a>
+            <div class="utpWrap pull-left">
+                <div class="utp clearfix pull-left">
+                    <div class="utpImg pull-left">
+                        <img src="images/car.png" alt="">
+                    </div>
+                    <div class="utpText pull-left">
+                        <div class="utpHead">БЫСТРАЯ ДОСТАВКА</div>
+                        <div class="utpDesc">Доставка товара в день обращения</div>
+                    </div>
+                </div>
+                <div class="utp clearfix pull-left">
+                    <div class="utpImg pull-left">
+                        <img src="images/phone.png" alt="">
+                    </div>
+                    <div class="utpText pull-left">
+                        <div class="utpHead">ЛОЯЛЬНАЯ  ПОДДЕРЖКА</div>
+                        <div class="utpDesc">Звоните в любой момент 8-800-400-00-00</div>
+                    </div>
+                </div>
+                <div class="utp clearfix pull-left">
+                    <div class="utpImg pull-left">
+                        <img src="images/gift.png" alt="">
+                    </div>
+                    <div class="utpText pull-left">
+                        <div class="utpHead">ПОДАРКИ И АКЦИИ</div>
+                        <div class="utpDesc">Распродажи, акции, подписка и многое другое</div>
+                    </div>
+                </div>
+            </div>
+            <div class="basket pull-right">
+                <div class="basketInner">
+                    Корзина [<b>0.00 руб</b>]
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="topNav">
+    <div class="container">
+        <div class="row">
+            <div class="navContainer clearfix">
+                <ul class="nav pull-left">
+                    <li class="active"><a href="">ГЛАВНАЯ</a></li>
+                    <li><a href="">ТОП ПРОДАЖИ</a></li>
+                    <li><a href="">НОВИНКИ</a></li>
+                    <li><a href="">ПРЕДЗАКАЗ</a></li>
+                    <li><a href="">СКИДКИ</a></li>
+                    <li><a href="">НОВОСТИ</a></li>
+                    <li><a href="">КОНКУРСЫ</a></li>
+                    <li><a href="">РАЗДАЧИ</a></li>
+                </ul>
+                <div class="someButtons pull-right">
+                    <a href="" class="subscribeBtn">ПОДПИСКА</a>
+                    <a href="" class="chest">СУНДУК ИГР</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ТУТ ЗАКАНЧиВАЕТСЯ ХЕДЕР -->
+
+
+
+    <div class="slider">
+        <div class="container">
+            <div class="row">
+                <div class="mainSlider">
+
+                    <div class="owlSlide">
+                        <div class="sliderImage">
+                            <div class="layout">
+                            </div>
+                            <div class="sliderImageBg" style="background-image: url(images/2.jpg);"></div>
+
+                        </div>
+                    </div>
+                    <div class="owlSlide">
+                        <div class="sliderImage">
+                            <div class="layout">
+                            </div>
+                            <div class="sliderImageBg" style="background-image: url(images/1.jpg);"></div>
+
+                        </div>
+                    </div>
+                    <div class="owlSlide">
+                        <div class="sliderImage">
+                            <div class="layout">
+                            </div>
+                            <div class="sliderImageBg" style="background-image: url(images/2.jpg);"></div>
+
+                        </div>
+                    </div>
+                    <div class="owlSlide">
+                        <div class="sliderImage">
+                            <div class="layout">
+                            </div>
+                            <div class="sliderImageBg" style="background-image: url(images/1.jpg);"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="thebest">
+        <div class="container">
+            <div class="row">
+                <div class="heading">
+                    <span>лучшие предложения</span>
+                </div>
+                <div class="bestSlider">
+                    <div class="bestItem">
+                        <div class="bestSaleLabel">-10 %</div>
+                        <div class="bestImg">
+                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+                            <a href="#" class="addToBasket">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="bestName">
+                            <a href="">mortal combat x</a>
+                        </div>
+                        <div class="bestPrice">
+                            <s>999 Р</s>
+                            <b>899 Р</b>
+                        </div>
+                        <div class="bestRate">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                    </div>
+                    <div class="bestItem">
+                        <div class="bestImg">
+                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+                            <a href="#" class="addToBasket">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="bestName">
+                            <a href="">mortal combat x</a>
+                        </div>
+                        <div class="bestPrice">
+                            <s>999 Р</s>
+                            <b>899 Р</b>
+                        </div>
+                        <div class="bestRate">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                    </div>
+                    <div class="bestItem">
+                        <div class="bestImg">
+                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+                            <a href="#" class="addToBasket">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="bestName">
+                            <a href="">mortal combat x</a>
+                        </div>
+                        <div class="bestPrice">
+                            <s>999 Р</s>
+                            <b>899 Р</b>
+                        </div>
+                        <div class="bestRate">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                    </div>
+                    <div class="bestItem">
+                        <div class="bestImg">
+                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+                            <a href="#" class="addToBasket">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="bestName">
+                            <a href="">mortal combat x</a>
+                        </div>
+                        <div class="bestPrice">
+                            <s>999 Р</s>
+                            <b>899 Р</b>
+                        </div>
+                        <div class="bestRate">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                    </div>
+                    <div class="bestItem">
+                        <div class="bestImg">
+                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+                            <a href="#" class="addToBasket">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="bestName">
+                            <a href="">mortal combat x</a>
+                        </div>
+                        <div class="bestPrice">
+                            <s>999 Р</s>
+                            <b>899 Р</b>
+                        </div>
+                        <div class="bestRate">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                    </div>
+                    <div class="bestItem">
+                        <div class="bestImg">
+                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+                            <a href="#" class="addToBasket">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="bestName">
+                            <a href="">mortal combat x</a>
+                        </div>
+                        <div class="bestPrice">
+                            <s>999 Р</s>
+                            <b>899 Р</b>
+                        </div>
+                        <div class="bestRate">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                    </div>
+                    <div class="bestItem">
+                        <div class="bestImg">
+                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+                            <a href="#" class="addToBasket">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="bestName">
+                            <a href="">mortal combat x</a>
+                        </div>
+                        <div class="bestPrice">
+                            <s>999 Р</s>
+                            <b>899 Р</b>
+                        </div>
+                        <div class="bestRate">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="leftMenu pull-left">
+                    <div class="categories">
+                        <div class="heading">
+                            <span>Категории</span>
+                            <div class="bars">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                        <ul class="nav">
+                            <li class="active"><a href="">Steam</a></li>
+                            <li><a href="">Origin</a></li>
+                            <li><a href="">Uplay</a></li>
+                            <li><a href="">Battle.net</a></li>
+                            <li><a href="">Экшн | Шутеры</a></li>
+                            <li><a href="">Ролевые</a></li>
+                            <li><a href="">Стратегии</a></li>
+                            <li><a href="">Симуляторы</a></li>
+                            <li><a href="">Гонки</a></li>
+                            <li><a href="">Аркады</a></li>
+                            <li><a href="">MMORPG</a></li>
+                            <li><a href="">Коллеционные издания</a></li>
+                            <li class="subs"><a href="">Подписка</a></li>
+                            <li class="chsts"><a href="">Сундуки</a></li>
+                        </ul>
+                    </div>
+                    <div class="sale">
+                        <div class="saleLabel">
+                            <div class="rotate">
+                                SALE
+                            </div>
+                        </div>
+                        <span>ЛУЧШИЕ ИГРЫ ПО ЛУЧШЕЙ ЦЕНЕ</span>
+                        <p>Всегда выгодные предложения которые помогут вам купить вашу любимую игру практически за копейки</p>
+                    </div>
+                    <div class="hotSale">
+                        <div class="heading clearfix">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        Горячие скидки
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="timer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hSaleContent clearfix">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a class="saleItem" href="">
+											<span class="howSale">
+												<span class="precent">- 70%</span>
+												<span class="price">599 Р</span>
+											</span>
+                                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+											<span class="itemDesc">
+												DRAGON AGE : INQUISITION
+											</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a class="saleItem" href="">
+											<span class="howSale">
+												<span class="precent">- 70%</span>
+												<span class="price">599 Р</span>
+											</span>
+                                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+											<span class="itemDesc">
+												DRAGON AGE : INQUISITION
+											</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a class="saleItem" href="">
+											<span class="howSale">
+												<span class="precent">- 70%</span>
+												<span class="price">599 Р</span>
+											</span>
+                                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+											<span class="itemDesc">
+												DRAGON AGE : INQUISITION
+											</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a class="saleItem" href="">
+											<span class="howSale">
+												<span class="precent">- 70%</span>
+												<span class="price">599 Р</span>
+											</span>
+                                            <img src="http://www.fightersgeneration.com/np7/char/mk9/scorpion-mk9port.jpg" alt="">
+											<span class="itemDesc">
+												DRAGON AGE : INQUISITION
+											</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="someBlock">
+                        <div class="heading"></div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate fugiat quaerat quidem, voluptates perferendis suscipit possimus reiciendis totam, at, ut, facilis? Quibusdam et recusandae atque consectetur ipsum possimus repellendus cupiditate.</p>
+                    </div>
+                    <div class="someBlock">
+                        <div class="heading"></div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate fugiat quaerat quidem, voluptates perferendis suscipit possimus reiciendis totam, at, ut, facilis? Quibusdam et recusandae atque consectetur ipsum possimus repellendus cupiditate.</p>
+                    </div>
+                </div>
+                <div class="mainContent pull-right">
+                    <div class="tabPanel" role="tabpanel">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#new" aria-controls="new" role="tab" data-toggle="tab">Новинки</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#preorder" aria-controls="preorder" role="tab" data-toggle="tab">Предзаказ</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#stock" aria-controls="stock" role="tab" data-toggle="tab">Акции</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="new">
+                                <div class="tabsSlider">
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="preorder">2</div>
+                            <div role="tabpanel" class="tab-pane" id="stock">3</div>
+                        </div>
+                    </div>
+                    <div class="someBanner">
+                        <img src="http://placehold.it/840x130" alt="">
+                    </div>
+                    <div class="tabPanel greenColor" role="tabpanel">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#top" aria-controls="top" role="tab" data-toggle="tab">ТОП ПРОДАЖ</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#sales" aria-controls="sales" role="tab" data-toggle="tab">СКИДКИ</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#50rub" aria-controls="50rub" role="tab" data-toggle="tab">ИГРЫ ДО 50 РУБЛЕЙ</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#100rub" aria-controls="100rub" role="tab" data-toggle="tab">100 РУБЛЕЙ </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#300rub" aria-controls="300rub" role="tab" data-toggle="tab">300 РУБЛЕЙ</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="top">
+                                <div class="tabsSlider">
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                    <div class="tabSlideItem">
+                                        <div class="itemImage">
+                                            <img src="http://u.kanobu.ru/longreads/2014/6/12/55780c85-c28b-4ce7-ae3c-63e1f7bbea4a.jpg" alt="">
+                                            <div class="fastSee">
+                                                <a href="" class="fastSeeBtn">
+                                                    быстрый просмотр
+                                                </a>
+                                            </div>
+                                            <div class="buttns">
+                                                <a href="" class="glyphicon glyphicon-shopping-cart"></a>
+                                                <a href="" class="glyphicon glyphicon-heart"></a>
+                                                <a href="" class="glyphicon glyphicon-eye-open"></a>
+                                            </div>
+                                        </div>
+                                        <div class="itemName"><a href="">THE WITCHER 3: WILD HUNT</a></div>
+                                        <div class="price">999 Р</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="sales">2</div>
+                            <div role="tabpanel" class="tab-pane" id="50rub">3</div>
+                            <div role="tabpanel" class="tab-pane" id="100rub">4</div>
+                            <div role="tabpanel" class="tab-pane" id="300rub">5</div>
+                        </div>
+                    </div>
+                    <div class="recently">
+                        <div class="sectionHeader">
+                            <span>Недавно купили</span>
+                        </div>
+                        <div class="recentlyInner clearfix">
+                            <div class="recentlyImg pull-left">
+                                <a href=""><img class="img-responsive" src="http://img1.wikia.nocookie.net/__cb20140704195629/assassinscreed/images/3/34/Art_of_AC_Unity.jpg" alt=""></a>
+                            </div>
+                            <div class="recentlyImg pull-left">
+                                <a href=""><img class="img-responsive" src="http://img1.wikia.nocookie.net/__cb20140704195629/assassinscreed/images/3/34/Art_of_AC_Unity.jpg" alt=""></a>
+                            </div>
+                            <div class="recentlyImg pull-left">
+                                <a href=""><img class="img-responsive" src="http://img1.wikia.nocookie.net/__cb20140704195629/assassinscreed/images/3/34/Art_of_AC_Unity.jpg" alt=""></a>
+                            </div>
+                            <div class="recentlyImg pull-left">
+                                <a href=""><img class="img-responsive" src="http://img1.wikia.nocookie.net/__cb20140704195629/assassinscreed/images/3/34/Art_of_AC_Unity.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="newsWrap">
+                        <div class="sectionHeader">
+                            <span>Новости</span>
+                        </div>
+                        <div class="newsInner clearfix">
+                            <div class="singleNews pull-left">
+                                <div class="newsImg">
+                                    <img class="img-responsive" src="http://static.trustedreviews.com/94/000029164/e947/gta-5.jpg" alt="">
+                                </div>
+                                <div class="newsText">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus dicta, facere in, quo odit doloribus natus rem quam consequatur reprehenderit maiores molestias impedit rerum architecto sit ab reiciendis, nam quisquam.
+                                    <br>
+                                    <a href="" class="full">Читать далее...</a>
+                                </div>
+                            </div>
+                            <div class="singleNews pull-left">
+                                <div class="newsImg">
+                                    <img class="img-responsive" src="http://static.trustedreviews.com/94/000029164/e947/gta-5.jpg" alt="">
+                                </div>
+                                <div class="newsText">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus dicta, facere in, quo odit doloribus natus rem quam consequatur reprehenderit maiores molestias impedit rerum architecto sit ab reiciendis, nam quisquam.
+                                    <br>
+                                    <a href="" class="full">Читать далее...</a>
+                                </div>
+                            </div>
+                            <div class="singleNews pull-left">
+                                <div class="newsImg">
+                                    <img class="img-responsive" src="http://static.trustedreviews.com/94/000029164/e947/gta-5.jpg" alt="">
+                                </div>
+                                <div class="newsText">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus dicta, facere in, quo odit doloribus natus rem quam consequatur reprehenderit maiores molestias impedit rerum architecto sit ab reiciendis, nam quisquam.
+                                    <br>
+                                    <a href="" class="full">Читать далее...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<!-- ТУТ НАЧИИНАЕТ ФУТЕ -->
+
+<footer>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="pull-left">
+                <div class="about">
+                    <h3>О нашем магазине</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non cupiditate nemo ut eius! Cupiditate, tempora, quasi? Ducimus iusto placeat nemo, mollitia repellat! Eligendi veritatis, incidunt. Nisi voluptatum at incidunt quas?</p>
+                </div>
+                <div class="contacts">
+                    <div class="someContact"><span>Тел.: </span>8-800-965-00-00</div>
+                    <div class="someContact"><span>E mail: </span>steamcat@domain.ru</div>
+                    <div class="someContact"><span>Адрес: </span> г. Москва ул. Отрадный проезд 6</div>
+                </div>
+                <div class="subscribe">
+                    <h3>Подписывайтесь на нас</h3>
+                    <a class="fa fa-facebook" href=""></a>
+                    <a class="fa fa-vk" href=""></a>
+                    <a class="fa fa-twitter" href=""></a>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="heading">
+                    <span>Подписывайтесь на свежие новости</span>
+                    <input type="text" placeholder="Введите свой E-mail"><button>Подписаться</button>
+                </div>
+                <div class="cats">
+                    <h3>Категории</h3>
+                    <ul class="nav">
+                        <li><a href="">Категория 1</a></li>
+                        <li><a href="">Категория 2</a></li>
+                        <li><a href="">Категория 3</a></li>
+                        <li><a href="">Категория 4</a></li>
+                        <li><a href="">Категория 5</a></li>
+                        <li><a href="">Категория 6</a></li>
+                        <li><a href="">Категория 7</a></li>
+                        <li><a href="">Категория 8</a></li>
+                    </ul>
+                </div>
+                <div class="cats">
+                    <h3>Категории</h3>
+                    <ul class="nav">
+                        <li><a href="">Категория 1</a></li>
+                        <li><a href="">Категория 2</a></li>
+                        <li><a href="">Категория 3</a></li>
+                        <li><a href="">Категория 4</a></li>
+                        <li><a href="">Категория 5</a></li>
+                        <li><a href="">Категория 6</a></li>
+                        <li><a href="">Категория 7</a></li>
+                        <li><a href="">Категория 8</a></li>
+                    </ul>
+                </div>
+                <div class="cats">
+                    <h3>Категории</h3>
+                    <ul class="nav">
+                        <li><a href="">Категория 1</a></li>
+                        <li><a href="">Категория 2</a></li>
+                        <li><a href="">Категория 3</a></li>
+                        <li><a href="">Категория 4</a></li>
+                        <li><a href="">Категория 5</a></li>
+                        <li><a href="">Категория 6</a></li>
+                        <li><a href="">Категория 7</a></li>
+                        <li><a href="">Категория 8</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
