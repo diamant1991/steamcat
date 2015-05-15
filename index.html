@@ -18,7 +18,9 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/numericinput.js"></script>
     <script src="js/icheck.js"></script>
-
+    <script src="js/jquery.knob.js"></script>
+    <script src="js/jquery.ccountdown.js"></script>
+    <script src="js/init.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -519,7 +521,12 @@
                                     </div>
                                     <div class="col-md-6 timer-block">
                                         <div class="timer">
-                                            <div id="sample_countdown">00:10:00</div>
+                                            <div class="ccounter">
+                                                  <input class="knob days" data-width="30" data-min="0" data-max="365" data-displayPrevious=true data-fgColor="transparent" data-inputColor="#fff" data-bgColor="transparent" data-readOnly="true" data-thickness=".2" value="1">
+                                                  <input class="knob hour" data-width="30" data-min="0" data-max="24" data-displayPrevious=true data-fgColor="transparent" data-inputColor="#fff" data-bgColor="transparent" data-readOnly="true" data-thickness=".2" value="1">
+                                                  <input class="knob minute" data-width="30" data-min="0" data-max="60" data-displayPrevious=true data-fgColor="transparent" data-inputColor="#fff" data-bgColor="transparent" data-readOnly="true" data-thickness=".2" value="1">
+                                                  <input class="knob second" data-width="30" data-min="0" data-max="60" data-displayPrevious=true data-fgColor="transparent" data-inputColor="#fff" data-bgColor="transparent" data-readOnly="true" data-thickness=".2" value="0" data-bgcolor="#eee">
+                                            </div>
                                             
                                         </div>
                                     </div>
@@ -1022,43 +1029,7 @@
     </div>
 </footer>
 <script>
-    function simple_timer(sec, block, direction) {
-    var time    = sec;
-    direction   = direction || false;
-             
-    var hour    = parseInt(time / 3600);
-    if ( hour < 1 ) hour = 0;
-    time = parseInt(time - hour * 3600);
-    if ( hour < 10 ) hour = '0'+hour;
- 
-    var minutes = parseInt(time / 60);
-    if ( minutes < 1 ) minutes = 0;
-    time = parseInt(time - minutes * 60);
-    if ( minutes < 10 ) minutes = '0'+minutes;
- 
-    var seconds = time;
-    if ( seconds < 10 ) seconds = '0'+seconds;
- 
-    block.innerHTML = hour+':'+minutes+':'+seconds;
- 
-    if ( direction ) {
-        sec++;
- 
-        setTimeout(function(){ simple_timer(sec, block, direction); }, 1000);
-    } else {
-        sec--;
- 
-        if ( sec > 0 ) {
-            setTimeout(function(){ simple_timer(sec, block, direction); }, 1000);
-        } else {
-            alert('Время вышло!');
-        }
-    }
-}
-
-    var block = document.getElementById('sample_countdown');
-    simple_timer(300, block);
-
-</script>
+        $(".ccounter").ccountdown(2015,06,25,'18:00');
+    </script>
 </body>
 </html>
